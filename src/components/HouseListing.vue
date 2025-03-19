@@ -1,6 +1,8 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import { House } from '@/models/House.js';
+import { houseService } from '@/services/HouseService.js';
+import { Pop } from '@/utils/Pop.js';
 import { computed } from 'vue';
 
 const account = computed(() => AppState.account)
@@ -8,6 +10,38 @@ const account = computed(() => AppState.account)
 defineProps({
   houseProp: { type: House, required: true }
 })
+
+async function deleteHouse(houseID) {
+
+  const confirmation = await Pop.confirm('Hey bro are you sure you want to delete this house?')
+  if (!confirmation) {
+    return
+  }
+
+  try {
+    Pop.toast('deleting house')
+    await houseService.deleteHouse(houseID)
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+
+  // NOTE this method i tried does not work
+  // const confirmation = Pop.confirm('Hey bro are you sure you want to delete this house?')
+  // if (!confirmation) {
+  //   return
+  // } else {
+
+  //   try {
+  //     Pop.toast('deleting house')
+  //     await houseService.deleteHouse(houseID)
+  //   }
+  //   catch (error) {
+  //     Pop.error(error);
+  //   }
+  // }
+
+}
 
 </script>
 
@@ -24,10 +58,10 @@ defineProps({
     </div>
     <div>Price: ${{ houseProp.price }}</div>
     <img :src="houseProp.imgUrl" alt="House picture">
-    <div>
-      <button v-if="houseProp.creatorId == account?.id">Delete</button>
-      <div></div>
-    </div>
+
+    <button @click="deleteHouse(houseProp.id)" v-if="houseProp.creatorId == account?.id" class="btn">Delete</button>
+
+
   </div>
 
 </template>

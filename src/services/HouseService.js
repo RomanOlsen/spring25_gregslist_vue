@@ -17,8 +17,10 @@ async createHouse(houseValues){
   AppState.houses.push(new House(response.data))
 }
 
-  async deleteHouse(){
-    // const response = await api.delete()
+  async deleteHouse(houseID){
+    const response = await api.delete(`api/houses/${houseID}`)
+    const indexNumber = AppState.houses.findIndex(house => house.id == houseID)
+    AppState.houses.splice(indexNumber, 1)
   }
 }
 
