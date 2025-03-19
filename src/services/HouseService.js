@@ -11,8 +11,8 @@ class HouseService {
     AppState.houses = houses
   }
 
-async createHouse(){
-  const response = await api.post('api/houses')
+async createHouse(houseValues){
+  const response = await api.post('api/houses', houseValues)
   logger.log(response.data)
   AppState.houses.push(new House(response.data))
 }
