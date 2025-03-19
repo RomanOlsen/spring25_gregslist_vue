@@ -5,12 +5,12 @@ import { ref } from 'vue';
 
 const houseData = ref({
 
-  bedrooms: 0,
-  bathrooms: 0,
-  levels: 0,
+  bedrooms: null,
+  bathrooms: null,
+  levels: null,
   imgUrl: '',
-  year: 0,
-  price: 0,
+  year: null,
+  price: null,
   description: '',
 
 })
