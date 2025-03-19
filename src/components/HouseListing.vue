@@ -11,10 +11,15 @@ defineProps({
 
 <template>
   <div class="card">
-    <div class="card-header"> {{ houseProp.year }} A.D. House | {{ houseProp.bedrooms }} Bed | {{ houseProp.bathrooms }}
-      Bath | {{ houseProp.levels }} Stories </div>
+
+
+    <div class="card-header">
+      <span class="mdi mdi-home">
+        {{ houseProp.year }} A.D. House | {{ houseProp.bedrooms }} Bed | {{ houseProp.bathrooms }} Bath | {{
+          houseProp.levels }} Stories
+      </span>
+    </div>
     <div>Price: ${{ houseProp.price }}</div>
-    <span class="mdi mdi-house"></span>
     <img :src="houseProp.imgUrl" alt="House picture">
     <div></div>
   </div>

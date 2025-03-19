@@ -10,6 +10,16 @@ class HouseService {
     const houses = response.data.map(pojo => new House(pojo))
     AppState.houses = houses
   }
+
+async createHouse(){
+  const response = await api.post('api/houses')
+  logger.log(response.data)
+  AppState.houses.push(new House(response.data))
+}
+
+  async deleteHouse(){
+    // const response = await api.delete()
+  }
 }
 
 export const houseService = new HouseService()

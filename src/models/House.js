@@ -1,5 +1,6 @@
 export class House {
   constructor(d) {
+    this.id = d.id
     this.bedrooms = d.bedrooms
     this.bathrooms = d.bathrooms
     this.levels = d.levels
